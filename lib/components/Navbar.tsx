@@ -19,7 +19,7 @@ export default function Navbar({ cartCount = 0 }: { cartCount?: number }) {
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
         window.addEventListener("keydown", onKey);
-        document.body.style.overflow = open ? "hidden" : "";
+        // document.body.style.overflow = open ? "hidden" : "";
         return () => {
             window.removeEventListener("keydown", onKey);
             document.body.style.overflow = "";
@@ -30,7 +30,7 @@ export default function Navbar({ cartCount = 0 }: { cartCount?: number }) {
         <>
             <header className="sticky top-0 z-50 h-16 w-full bg-stone-100 flex items-center justify-center">
                 <div className="font-serif text-3xl text-stone-700 italic">
-                    Tipografi imajiner
+                    katalog imajiner.
                 </div>
 
                 {/* right side icons */}
