@@ -40,10 +40,10 @@ function FilterGroup({
     onToggle: (v: string) => void;
 }) {
     return (
-        <details className="group border-b border-stone-200 py-4" open>
-            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-stone-800">
+        <details className="group border-b border-stone-200 dark:border-stone-800 py-4" open>
+            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-stone-800 dark:text-stone-200">
                 {title}
-                <ChevronDown size={15} className="text-stone-400 transition-transform group-open:rotate-180" />
+                <ChevronDown size={15} className="text-stone-400 dark:text-stone-600 transition-transform group-open:rotate-180" />
             </summary>
             <div className="mt-3 flex flex-wrap gap-2">
                 {options.map((opt) => {
@@ -53,8 +53,8 @@ function FilterGroup({
                             key={opt}
                             onClick={() => onToggle(opt)}
                             className={`rounded-full px-3 py-1.5 text-xs transition-colors ${active
-                                ? "bg-stone-900 text-white"
-                                : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                                ? "bg-stone-900 text-white dark:bg-stone-100 dark:text-black"
+                                : "bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-900 dark:text-stone-400 dark:hover:bg-stone-800"
                                 }`}
                         >
                             {opt}
@@ -75,16 +75,16 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                 e.stopPropagation();
                 openQuickAdd(product);
             }}>
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-stone-200">
+            <div className="relative aspect-square overflow-hidden rounded-xl bg-stone-200 dark:bg-stone-800">
                 {product.badge && (
-                    <span className="absolute left-3 top-3 z-10 rounded-full bg-stone-900 px-2.5 py-1 text-[11px] text-white">
+                    <span className="absolute left-3 top-3 z-10 rounded-full bg-stone-900 dark:bg-stone-100 px-2.5 py-1 text-[11px] text-white dark:text-black">
                         {product.badge}
                     </span>
                 )}
                 <div className="absolute right-3 top-3 z-10 flex gap-1.5 opacity-0 transition-opacity group-hover:opacity-100">
                     <button
                         aria-label="Wishlist"
-                        className="flex size-8 items-center justify-center rounded-full bg-white/90 text-stone-700 hover:bg-white"
+                        className="flex size-8 items-center justify-center rounded-full bg-white/90 dark:bg-black/90 text-stone-700 dark:text-stone-300 hover:bg-white dark:hover:bg-black"
                     >
                         <Heart size={15} />
                     </button>
@@ -108,17 +108,17 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
                     />
                 ) : (
                     <div className="flex h-full w-full items-center justify-center">
-                        <span className="font-serif text-5xl italic text-stone-400">{index + 1}</span>
+                        <span className="font-serif text-5xl italic text-stone-400 dark:text-stone-600">{index + 1}</span>
                     </div>
                 )}
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-                <p className="font-serif italic text-lg text-stone-800">{product.name}</p>
+                <p className="font-serif italic text-lg text-stone-800 dark:text-stone-200">{product.name}</p>
                 <div className="flex items-baseline gap-1.5">
                     {product.originalPrice && (
-                        <span className="text-xs text-stone-400 line-through">${product.originalPrice}</span>
+                        <span className="text-xs text-stone-400 dark:text-stone-600 line-through">${product.originalPrice}</span>
                     )}
-                    <span className="text-sm text-stone-900">${product.price}</span>
+                    <span className="text-sm text-stone-900 dark:text-stone-100">${product.price}</span>
                 </div>
             </div>
         </div>
@@ -140,13 +140,13 @@ export default function Catalogue() {
     }, [category]);
 
     return (
-        <div className="bg-stone-50 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-42">
+        <div className="bg-stone-50 dark:bg-stone-900 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-42">
             <div className="px-6 pb-10 pt-16 sm:px-10 lg:px-16">
             </div>
 
             <div className="flex flex-col gap-10 px-6 pb-20 sm:px-10 lg:flex-row lg:px-16">
                 <aside className="lg:w-56 lg:shrink-0">
-                    <h2 className="mb-2 text-sm font-medium text-stone-900">Filter by</h2>
+                    <h2 className="mb-2 text-sm font-medium text-stone-900 dark:text-stone-100">Filter by</h2>
                     <FilterGroup
                         title="Category"
                         options={CATEGORIES}
@@ -156,19 +156,19 @@ export default function Catalogue() {
                 </aside>
 
                 <div className="flex-1">
-                    <div className="mb-6 flex items-center justify-between border-b border-stone-200 pb-4">
+                    <div className="mb-6 flex items-center justify-between border-b border-stone-200 dark:border-stone-800 pb-4">
                         <p className="text-sm text-stone-500">Showing {filtered.length} results</p>
 
                         <div className="relative">
                             <button
                                 onClick={() => setSortOpen((o) => !o)}
-                                className="flex items-center gap-1.5 text-sm text-stone-700"
+                                className="flex items-center gap-1.5 text-sm text-stone-700 dark:text-stone-300"
                             >
                                 Sort by: <span className="font-medium">{sort}</span>
                                 <ChevronDown size={14} className={sortOpen ? "rotate-180" : ""} />
                             </button>
                             {sortOpen && (
-                                <div className="absolute right-0 z-10 mt-2 w-48 rounded-lg border border-stone-200 bg-white py-1 shadow-lg">
+                                <div className="absolute right-0 z-10 mt-2 w-48 rounded-lg border border-stone-200 bg-white dark:border-stone-800 dark:bg-black py-1 shadow-lg">
                                     {SORT_OPTIONS.map((opt) => (
                                         <button
                                             key={opt}
@@ -176,7 +176,7 @@ export default function Catalogue() {
                                                 setSort(opt);
                                                 setSortOpen(false);
                                             }}
-                                            className="block w-full px-3 py-2 text-left text-sm text-stone-600 hover:bg-stone-50"
+                                            className="block w-full px-3 py-2 text-left text-sm text-stone-600 hover:bg-stone-50 dark:text-stone-400 dark:hover:bg-stone-950"
                                         >
                                             {opt}
                                         </button>
@@ -187,9 +187,9 @@ export default function Catalogue() {
                     </div>
 
                     {filtered.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-stone-300 py-24 text-center">
-                            <p className="font-serif italic text-xl text-stone-700">Nothing here yet</p>
-                            <p className="mt-1 text-sm text-stone-500">Check back soon, or try a different filter.</p>
+                        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-stone-300 dark:border-stone-700 py-24 text-center">
+                            <p className="font-serif italic text-xl text-stone-700 dark:text-stone-300">Nothing here yet</p>
+                            <p className="mt-1 text-sm text-stone-500 dark:text-stone-500">Check back soon, or try a different filter.</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/lib/components/Navbar";
 import { CartProvider } from "@/contexts/cartContext";
 import QuickAddModal from "@/lib/components/QuickAddModal";
+import { ThemeProvider } from "@/lib/components/Themeprovider";
 
 
 const geistSans = Geist({
@@ -28,11 +29,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <CartProvider>
-          <Navbar />
-          {children}
-          <QuickAddModal />
-        </CartProvider>
+        <ThemeProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+            <QuickAddModal />
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

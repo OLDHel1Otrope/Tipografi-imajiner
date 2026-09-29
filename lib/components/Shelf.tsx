@@ -168,7 +168,7 @@ export default function Shelf() {
                             <div
                                 ref={tipRef}
                                 className="fixed left-0 top-0 z-90 pointer-events-none w-56 rounded-3xl
-                            bg-stone-100/20
+                            bg-stone-100/20 dark:bg-stone-900/20
                            backdrop-blur-md shadow-xl p-2
                            will-change-transform"
                                 style={{ transform: "translate3d(-9999px, -9999px, 0)" }}
@@ -182,6 +182,7 @@ export default function Shelf() {
                     from-stone-100
                     via-stone-200
                     to-stone-200
+                    dark:bg-none
                   "
                                 >
                                     <div className="relative z-10 flex h-full flex-col px-5 pt-5">
@@ -194,6 +195,7 @@ export default function Shelf() {
                           leading-[0.95]
                           tracking-[-1.7px]
                           text-black
+                          dark:text-white
                         "
                                             >
                                                 Details of Your
@@ -208,6 +210,8 @@ export default function Shelf() {
                           leading-none
                           tracking-[-0.8px]
                           text-black
+                        dark:text-white
+
                         "
                                             >
                                                 Imaginary Shelf
@@ -222,6 +226,7 @@ export default function Shelf() {
                           font-medium
                           leading-tight
                           text-black
+                          dark:text-white
                         "
                                             >
                                                 This is where the description of the product goes, click on the product to add it to the cart.
